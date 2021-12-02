@@ -25,7 +25,7 @@ func windowBuilder(lst []int) []int {
 func getListOfNumbers() []int {
   result := make([]int, 0)
 
-  f, err := os.Open("../../input/day1.1")
+  f, err := os.Open("../../input/day01.data")
   if err != nil {
     log.Fatal(err)
   }

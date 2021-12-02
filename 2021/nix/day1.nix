@@ -1,7 +1,7 @@
 with builtins;
 
 let 
-  input1 = readFile ../input/day1.1;
+  input1 = readFile ../input/day01.data;
   splitLines = text: filter (item: (isString item && item != "")) (split "\n" text);
   data1 = map (f: toInt f) (splitLines input1);
   data2 = buildWindow data1;
@@ -23,7 +23,7 @@ let
     result = if (last == null) then 0 else (if (last < current) then 1 else 0);
     next = if (remaining == []) then 0 else (countIncreases { last = current; lst = remaining; });
   in result + next; 
-in {
-  part1 = ''${toString (countIncreases {lst = data1;})}'';
-  part2 = ''${toString (countIncreases {lst = data2;})}'';
-}
+in ''
+  Part 1: ${toString (countIncreases {lst = data1;})}
+  Part 2: ${toString (countIncreases {lst = data2;})}
+''
