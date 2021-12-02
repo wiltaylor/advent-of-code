@@ -8,7 +8,7 @@
     };
   in {
 
-    packages.x86_64-linux.day1 = pkgs.writeText "day01" (import ./day1.nix);
-    packages.x86_64-linux.day2 = pkgs.writeText "day02" (import ./day2.nix);
+    packages.x86_64-linux.day01 = pkgs.writeText "day01" (import ./day01.nix);
+    packages.x86_64-linux.day02 = pkgs.writeText "day02" (import ./day02.nix);
   };
 }
