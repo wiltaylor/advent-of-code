@@ -82,13 +82,38 @@ func calcPosition(lst []movement) (int, int) {
   return depth, horizontal
 }
 
+func calcPosition2(lst []movement) (int, int) {
+  depth := 0
+  horizontal := 0
+  aim := 0
+
+  for _, item := range lst{
+    switch(item.direction){
+      case Up:
+        aim -= item.ammount
+        break
+      case Down:
+        aim += item.ammount
+        break
+      case Forward:
+        horizontal += item.ammount
+        depth += item.ammount * aim
+        break
+    }
+  }
+
+  return depth, horizontal
+
+}
+
 func part1() int{
   d, h := calcPosition(getDirections())
   return d * h;
 }
 
 func part2() int{
-  return 0;
+  d, h := calcPosition2(getDirections())
+  return d * h;
 }
 
 func main(){
