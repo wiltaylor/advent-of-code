@@ -9,7 +9,9 @@ fn main() {
 
     println!("--- [ Day 1 ] ---");
     let day1part1 = day1::part1(&day1);
+    let day1part2 = day1::part2(&day1);
 
     println!("Part 1: {}", day1part1);
+    println!("Part 2: {}", day1part2);
 
 }
