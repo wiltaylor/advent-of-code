@@ -10,7 +10,7 @@ pub fn part1(input: &String) -> u64 {
         let op = MoveType::parse_oponent(&op);
         let player = MoveType::parse_player(&player);
 
-        result += score_row2(&op, &player);
+        result += score_row(&op, &player);
     }
 
     result
@@ -28,7 +28,7 @@ pub fn part2(input: &String) -> u64 {
         let op = MoveType::parse_oponent(&op);
         let player = RequiredAction::parse(&player);
         let player_move = get_player_move(&op, &player);
-        result += score_row2(&op, &player_move);
+        result += score_row(&op, &player_move);
     }
 
     result
@@ -122,7 +122,7 @@ fn get_player_move(opponent: &MoveType, player: &RequiredAction) -> MoveType {
     }
 }
 
-fn score_row2(opponent: &MoveType, player: &MoveType) -> u64 {
+fn score_row(opponent: &MoveType, player: &MoveType) -> u64 {
     let mut score = 0;
 
     score += match player {
@@ -150,55 +150,6 @@ fn score_row2(opponent: &MoveType, player: &MoveType) -> u64 {
     score
 }
 
-fn score_row(line: &String, win_rules: bool) -> u64 {
-    let parts = line.split(" ");
-    let mut opponent = "".to_string();
-    let mut player = "".to_string();
-    let mut score = 0;
-
-    for p in parts {
-        if opponent == "" {
-            opponent = p.to_string();
-            continue;
-        }
-
-        if player == "" {
-            player = p.to_string();
-            break
-        }
-    }
-
-    if player == "X" {
-        score += 1;
-    } else if player == "Y" {
-        score += 2;
-    } else if player == "Z" {
-        score += 3;
-    }
-   
-    //paper and rock
-    if player == "Y" && opponent == "A" {
-        score += 6;
-
-    //scissors and paper
-    } else if player == "Z" && opponent == "B" {
-        score += 6;
-    //rock and scissors 
-    } else if player == "X" && opponent == "C" {
-        score += 6;
-    //paper and paper
-    } else if player == "Y" && opponent == "B" {
-        score += 3;
-    //rock and rock 
-    } else if player == "X" && opponent == "A" {
-        score += 3;
-    //scissors and scissors
-    } else if player == "Z" && opponent == "C" {
-        score += 3;
-    }
-
-    score
-}
 
 #[cfg(test)]
 mod tests {
