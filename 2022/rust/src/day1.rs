@@ -1,29 +1,9 @@
 pub fn part1(input: &String) -> u64 {
-    let mut max_elf = 0;
-    let mut current_elf = 0;
+    check_top_elves(input, 1)
+}
 
-    let input = input.split("\n");
-
-
-    for line in input {
-        if line.trim() == "" {
-            if current_elf > max_elf {
-                max_elf = current_elf
-            }
-
-            current_elf = 0;
-            continue;
-        }
-
-        let value: u64 = line.parse().unwrap();
-        current_elf += value;
-    }
-
-    if current_elf > max_elf {
-        max_elf = current_elf
-    }
-
-    max_elf
+pub fn part2(input: &String) -> u64 {
+    check_top_elves(input, 3)
 }
 
 fn push_top_elf(data: &mut Vec<u64>, value:u64) {
@@ -48,9 +28,13 @@ fn push_top_elf(data: &mut Vec<u64>, value:u64) {
     }
 }
 
-pub fn part2(input: &String) -> u64 {
-    let mut top_elves: Vec<u64> = vec![0,0,0];
+pub fn check_top_elves(input: &String, qty: usize) -> u64 {
+    let mut top_elves: Vec<u64> = vec![];
     let mut current_elf = 0;
+
+    for _ in 0..qty {
+        top_elves.push(0);
+    }
 
     let input = input.split("\n");
 
@@ -77,8 +61,6 @@ pub fn part2(input: &String) -> u64 {
 
     result
 }
-
-
 
 #[cfg(test)]
 mod tests {
